@@ -1,5 +1,5 @@
-<h1 align="center">DevQ&A</h1>
-<p align="center">DevQ&A is an open-source community-driven platform for developers to ask and answer questions. Built with React, NestJS, and MongoDB, DevQ&A allows users to share their knowledge and find solutions to common development problems.</p>
+<h1 align="center">DevHelp</h1>
+<p align="center">DevHelp is an open-source community-driven platform for developers to ask and answer questions. Built with React, NestJS, and MongoDB, DevHelp allows users to share their knowledge and find solutions to common development problems.</p>
 Features
 User registration and login
 Question and answer system
