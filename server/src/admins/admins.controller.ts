@@ -4,7 +4,7 @@ import { Admin } from './interfaces/admin.interface';
 import { AdminsService } from './admins.service';
 import * as bcrypt from 'bcrypt';
 
-@Controller('admins')
+@Controller('admin')
 export class AdminsController { 
    constructor(private readonly adminServices: AdminsService){} 
 

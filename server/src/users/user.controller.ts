@@ -6,38 +6,38 @@ import * as bcrypt from "bcrypt"
 
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserService){}
+    constructor(private readonly userService: UserService) { }
 
     @Post('register')
-    async Register(@Body() userDto: userDto):  Promise<userInterface | {message: String}>{
-        if(Object.keys(userDto).length == 0){
-            return { message: "please enter valide data"}
-        }else{
+    async Register(@Body() userDto: userDto): Promise<userInterface | { message: String }> {
+        if (Object.keys(userDto).length == 0) {
+            return { message: "please enter valide data" }
+        } else {
             const saltOrRounds = await bcrypt.genSalt();
             const password = userDto.password;
-            const hash = await bcrypt.hash(password,saltOrRounds)
+            const hash = await bcrypt.hash(password, saltOrRounds)
             const data = {
                 fullname: userDto.fullname,
                 email: userDto.email,
                 password: hash,
-            } 
+            }
             return this.userService.Register(data)
         }
     }
 
     @Post('login')
-    async Login(@Body() data){
+    async Login(@Body() data) {
         const dbpassword = await this.userService.Login(data)
         if (!dbpassword) {
             return { message: 'no email such that' }
-        }else{
+        } else {
             const password = dbpassword.password;
-            const validepassword = await bcrypt.compare(data.password,password)
-            if(validepassword){
+            const validepassword = await bcrypt.compare(data.password, password)
+            if (validepassword) {
                 return dbpassword;
-            }else{
+            } else {
                 return { message: 'password is not correct' }
             }
-        } 
+        }
     }
 }
