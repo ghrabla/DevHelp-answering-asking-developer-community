@@ -25,6 +25,11 @@ export class UserController {
         }
     }
 
+    @Get()
+    Findall(): Promise<userInterface[]>{
+        return this.userService.Findall()
+    }
+
     @Post('login')
     async Login(@Body() data) {
         const dbpassword = await this.userService.Login(data)

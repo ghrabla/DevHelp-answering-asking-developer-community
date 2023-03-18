@@ -12,6 +12,10 @@ export class UserService {
       return await newUser.save()
     }
 
+    async Findall(): Promise<userInterface[]>{
+      return await this.userModel.find()
+    }
+
     async Login(user){
         const findemail = await this.userModel.find({email: user.email})
         return findemail[0]
