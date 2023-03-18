@@ -15,13 +15,13 @@ export class UserController {
         } else {
             const saltOrRounds = await bcrypt.genSalt();
             const password = userDto.password;
-            const hash = await bcrypt.hash(password, saltOrRounds)
+            const hash = await bcrypt.hash(password, saltOrRounds);
             const data = {
                 fullname: userDto.fullname,
                 email: userDto.email,
                 password: hash,
             }
-            return this.userService.Register(data)
+            return this.userService.Register(data);
         }
     }
 
