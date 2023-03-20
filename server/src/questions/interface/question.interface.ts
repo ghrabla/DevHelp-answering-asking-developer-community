@@ -1,4 +1,6 @@
 export interface questionInterface{
     title: String,
-    body: {}
+    body: {},
+    author: String,
+    comments?: []
 }

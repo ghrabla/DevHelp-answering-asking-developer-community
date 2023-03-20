@@ -2,10 +2,12 @@ import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common'
 import { AnswersService } from './answers.service';
 import { answerDTO } from './dto/create-answer.dto';
 import { answerInterface } from './interface/answer.interface';
+import { QuestionsService } from 'src/questions/questions.service';
 
 @Controller('answers')
 export class AnswersController { 
-    constructor(private readonly answerServices: AnswersService) { }
+    constructor(private readonly answerServices: AnswersService,
+       private readonly questionServices: QuestionsService ) { }
 
     @Get()
     getAllAnswers(): Promise<answerInterface[]> {
@@ -18,8 +20,10 @@ export class AnswersController {
     }
 
     @Post('create')
-    createAnswer(@Body() createanswerDTO: answerDTO): Promise<answerInterface> {
-        return this.answerServices.createAnswer(createanswerDTO);
+    async createAnswer(@Body() createanswerDTO) {
+        const answer = await this.answerServices.createAnswer(createanswerDTO);
+        this.questionServices.updateQuestionAnswer(answer.id_question, answer._id)
+        return answer;
     }
 
     @Put(':id')

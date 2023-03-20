@@ -17,7 +17,7 @@ export class AnswersService {
    
   }
 
-  async createAnswer(createanswerDTO: answerDTO): Promise<answerInterface> {
+  async createAnswer(createanswerDTO){
     const newAnswer = new this.answerModel(createanswerDTO);
     return await newAnswer.save();
   }
