@@ -6,8 +6,9 @@ import { QuestionsService } from 'src/questions/questions.service';
 
 @Controller('answers')
 export class AnswersController { 
-    constructor(private readonly answerServices: AnswersService,
-       private readonly questionServices: QuestionsService ) { }
+    constructor(private readonly answerServices: AnswersService
+    //    private readonly questionServices: QuestionsService 
+       ) { }
 
     @Get()
     getAllAnswers(): Promise<answerInterface[]> {
@@ -22,7 +23,7 @@ export class AnswersController {
     @Post('create')
     async createAnswer(@Body() createanswerDTO) {
         const answer = await this.answerServices.createAnswer(createanswerDTO);
-        this.questionServices.updateQuestionAnswer(answer.id_question, answer._id)
+        // this.questionServices.updateQuestionAnswer(answer.id_question, answer._id)
         return answer;
     }
 
