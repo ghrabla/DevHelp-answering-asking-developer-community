@@ -26,7 +26,7 @@ const Register = () => {
             toast.error("your register is not correct!");
         }
         if (isSuccess) {
-            navigate("/informations");
+            navigate("/read");
             const notify = () => toast.success("your register is correct!");
             notify();
         }

@@ -2,16 +2,17 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 import { userDto } from './dto/user.dto';
 import { userInterface } from './interface/user.interface';
 import { UserService } from './user.service';
-import * as bcrypt from "bcrypt"
+import * as bcrypt from "bcrypt";
+import { response } from 'express';
 
 @Controller('client')
 export class UserController {
     constructor(private readonly userService: UserService) { }
 
     @Post('register')
-    async Register(@Body() userDto: userDto): Promise<userInterface | { message: String }> {
+    async Register(@Body() userDto: userDto){
         if (Object.keys(userDto).length == 0) {
-            return { message: "please enter valide data" }
+            return response.status(400).send({ message: "please enter valide data" })
         } else {
             const saltOrRounds = await bcrypt.genSalt();
             const password = userDto.password;
@@ -34,15 +35,15 @@ export class UserController {
     async Login(@Body() data) {
         const dbpassword = await this.userService.Login(data)
         if (!dbpassword) {
-            return { message: 'no email such that' }
+            return response.status(404).send({ message: 'no email such that' })
         } else {
             const password = dbpassword.password;
             const validepassword = await bcrypt.compare(data.password, password)
             if (validepassword) {
                 return dbpassword;
             } else {
-                return { message: 'password is not correct' }
+                return response.status(401).send({ message: 'password is not correct' })
             }
-        }
-    }
+        } 
+    } 
 }
