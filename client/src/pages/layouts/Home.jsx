@@ -1,8 +1,14 @@
+import Container from "../../components/container";
+import Footer from "../../components/footer";
 import Navbar from "../../components/navbar";
 
 const Home = ()=>{
     return(
-        <Navbar/>
+       <div>
+         <Navbar/>
+         <Container/>
+        <Footer/>
+       </div>
     )
 }
 
