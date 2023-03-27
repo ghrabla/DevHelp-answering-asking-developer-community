@@ -1,16 +1,16 @@
 import Footer from "../../components/footer";
 import Navbar from "../../components/navbar";
 
-const Question = ()=>{
+const Read = ()=>{
     return(
-        <div>
-        <Navbar/>
+       <div>
+        <Navbar/>  
          <div>
-          hi Question
+         hi read
          </div>
          <Footer/>
        </div>
     )
  }
  
- export default Question;
+ export default Read;

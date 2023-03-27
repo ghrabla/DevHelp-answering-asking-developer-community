@@ -5,7 +5,7 @@ import Home from "./pages/layouts/Home";
 import Login from "./pages/users/login";
 import Register from "./pages/users/register";
 import Question from "./pages/users/question";
-import Read from "./pages/users/Read";
+import Read from "./pages/users/listquestions";
 export default function App() {
   return (
     <div className="App">
