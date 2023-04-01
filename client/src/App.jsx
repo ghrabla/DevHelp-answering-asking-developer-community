@@ -6,6 +6,7 @@ import Login from "./pages/users/login";
 import Register from "./pages/users/register";
 import Question from "./pages/questions/question";
 import Listquestions from "./pages/questions/listquestions";
+import CreateQuestion from "./pages/questions/create";
 export default function App() {
   return (
     <div className="App">
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/question" element={<Question/>}/>
         <Route path="/listquestions" element={<Listquestions/>}/>
+        <Route path="/questions/create" element={<CreateQuestion/>}/>
       </Routes>
       <ToastContainer/>
     </div>
