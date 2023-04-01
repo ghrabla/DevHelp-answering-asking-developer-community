@@ -27,7 +27,7 @@ const Login = () => {
             notify();
         }
         if (isSuccess) {
-            navigate("/read");
+            navigate("/listquestions");
             const notify = () => toast.success("your login is correct!");
             notify();
         }
@@ -63,7 +63,7 @@ const Login = () => {
                 <div>
                     <h1 class="text-white font-bold text-4xl font-sans"><i class="fa-solid fa-code"></i> DevHelp</h1>
                     <p class="text-white mt-1">The most popular code solution for you</p>
-                    <Link to="/home">
+                    <Link to="/">
                         <button type="submit" class="block w-28 bg-white text-indigo-800 mt-4 py-2 rounded-2xl font-bold mb-2">Back Home</button>
                     </Link>
                 </div>

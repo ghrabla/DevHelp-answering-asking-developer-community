@@ -4,18 +4,18 @@ import { ToastContainer } from "react-toastify";
 import Home from "./pages/layouts/Home";
 import Login from "./pages/users/login";
 import Register from "./pages/users/register";
-import Question from "./pages/users/question";
-import Read from "./pages/users/listquestions";
+import Question from "./pages/questions/question";
+import Listquestions from "./pages/questions/listquestions";
 export default function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="*" element={<ErrorPage/>}/>
-        <Route path="/home" element={<Home/>}/>
+        <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/question" element={<Question/>}/>
-        <Route path="/read" element={<Read/>}/>
+        <Route path="/listquestions" element={<Listquestions/>}/>
       </Routes>
       <ToastContainer/>
     </div>

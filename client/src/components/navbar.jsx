@@ -44,7 +44,9 @@ const Navbar = () => {
                         <div class="container flex flex-col flex-wrap items-center justify-between mx-auto md:flex-row max-w-7xl">
                             <div class="relative flex lg:flex-col flex-row">
                                 <nav class="flex flex-col lg:flex-row items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200 lg:gap-0 gap-5">
+                                    <Link to="/">
                                     <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Home</a>
+                                    </Link>
                                     <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Features</a>
                                     <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Pricing</a>
                                     <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Blog</a>
