@@ -4,9 +4,9 @@ import { useState } from  "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+
 const CreateQuestion = ()=>{
 
-  
     const  modules  = {
         toolbar: [
             [{ font: [] }],
@@ -28,7 +28,10 @@ const CreateQuestion = ()=>{
    return(
     <div>
        <Navbar></Navbar>
+       <div className="w-3/4 mx-10 my-10">
+
        <ReactQuill modules={modules} theme="snow" onChange={setValue} placeholder="Content goes here..." />
+       </div>
         <Footer></Footer>
     </div>
    )
