@@ -1,15 +1,27 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { logout, reset } from '../services/authUser/authSlice'
+
 
 const Navbar = () => {
     const [show, setshow] = useState(false);
-
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { client } = useSelector((state) => state.authclient)
+    console.log(client);
     const showfun = () => {
         setshow(!show);
     };
 
+    const onLogout = () => {
+        dispatch(logout())
+        dispatch(reset())
+        navigate('/')
+    }
+
     return (
-        <div>
+        <div className="fixed w-full shadow-md">
             <nav class="flex items-center justify-between flex-wrap bg-white p-6">
                 <div class="flex items-center flex-shrink-0 text-white mr-6">
                     <span class="font-semibold text-xl tracking-tight text-black">
@@ -45,7 +57,7 @@ const Navbar = () => {
                             <div class="relative flex lg:flex-col flex-row">
                                 <nav class="flex flex-col lg:flex-row items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200 lg:gap-0 gap-5">
                                     <Link to="/">
-                                    <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Home</a>
+                                        <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Home</a>
                                     </Link>
                                     <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Features</a>
                                     <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Pricing</a>
@@ -53,18 +65,40 @@ const Navbar = () => {
                                 </nav>
                             </div>
 
-                            <div class="inline-flex flex-col lg:flex-row items-center lg:ml-5 lg:space-x-6 lg:justify-end lg:gap-0 gap-5">
-                                <Link to="/login">
-                                <a href="#" class="text-base font-medium leading-6 text-gray-600 whitespace-no-wrap transition duration-150 ease-in-out hover:text-gray-900">
-                                    Sign in
-                                </a>
-                                </Link>
-                                <Link to="/register">
-                                <a href="#" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
-                                    Sign up
-                                </a>
-                                </Link>
+                            <div class='w-96'>
+                                <div class="relative flex items-center w-full h-12 rounded-lg ">
+                                    <div class="grid place-items-center h-full w-12 text-gray-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                    </div>
+
+                                    <input
+                                        class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+                                        type="text"
+                                        id="search"
+                                        placeholder="Search something.." />
+                                </div>
                             </div>
+
+                            {client ? (
+                                <a href="javascript:void(0)" onClick={onLogout} class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+                                    Sign out
+                                </a>
+                            ) : (
+                                <div class="inline-flex flex-col lg:flex-row items-center lg:ml-5 lg:space-x-6 lg:justify-end lg:gap-0 gap-5">
+                                    <Link to="/login">
+                                        <a href="javascript:void(0)" class="text-base font-medium leading-6 text-gray-600 whitespace-no-wrap transition duration-150 ease-in-out hover:text-gray-900">
+                                            Sign in
+                                        </a>
+                                    </Link>
+                                    <Link to="/register">
+                                        <a href="javascript:void(0)" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+                                            Sign up
+                                        </a>
+                                    </Link>
+                                </div>
+                            )}
                         </div>
                     </section>
 
