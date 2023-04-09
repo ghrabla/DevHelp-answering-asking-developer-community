@@ -13,10 +13,11 @@ const Listquestions = () => {
                   <div class="mb-10 text-center">
                      <span
                         class="block mb-4 text-xs font-semibold leading-4 tracking-widest text-center text-blue-500 uppercase text-black">
-                        Our blog
+                        Our Question
                      </span>
-                     <h1 class="text-3xl font-bold capitalize "> Blog List</h1>
+                     <h1 class="text-3xl font-bold capitalize "> Question List</h1>
                   </div>
+
                   <div
                      class="grid grid-cols-1 mb-6 md:grid-cols-[40%,1fr] border-gray-200 rounded-md border dark:border-gray-800  gap-2">
                      <div>
@@ -38,7 +39,7 @@ const Listquestions = () => {
                         </p>
                         <div class="flex items-center ">
                            <a href="#"
-                              class="flex items-center mr-4 text-sm text-gray-500 hover:text-gray-700 text-black dark:hover:text-gray-100">
+                              class="flex items-center mr-4 text-sm text-gray-500 hover:text-gray-700 text-black ">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="w-4 h-4 mr-1 bi bi-eye" viewBox="0 0 16 16">
                                  <path
@@ -50,7 +51,7 @@ const Listquestions = () => {
                               </svg>8sec read
                            </a>
                            <a href="#"
-                              class="flex items-center mr-4 text-sm text-gray-500 hover:text-gray-700 text-black dark:hover:text-gray-100">
+                              class="flex items-center mr-4 text-sm text-gray-500 hover:text-gray-700 text-black ">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="w-4 h-4 mr-1 bi bi-chat" viewBox="0 0 16 16">
                                  <path
@@ -59,7 +60,7 @@ const Listquestions = () => {
                               </svg>Comments
                            </a>
                            <a href="#"
-                              class="flex items-center mr-4 text-sm text-gray-500 hover:text-gray-700 text-black dark:hover:text-gray-100">
+                              class="flex items-center mr-4 text-sm text-gray-500 hover:text-gray-700 text-black ">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="w-4 h-4 mr-1 bi bi-archive" viewBox="0 0 16 16">
                                  <path
@@ -69,7 +70,8 @@ const Listquestions = () => {
                            </a>
                         </div>
                      </div>
-                  </div>               
+                  </div>    
+
                </div>
             </section>
          </div>

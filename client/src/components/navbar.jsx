@@ -21,8 +21,8 @@ const Navbar = () => {
     }
 
     return (
-        <div className="fixed w-full shadow-md">
-            <nav class="flex items-center justify-between flex-wrap bg-white p-6">
+        <div className="z-50">
+            <nav class="flex items-center justify-between flex-wrap bg-white p-4">
                 <div class="flex items-center flex-shrink-0 text-white mr-6">
                     <span class="font-semibold text-xl tracking-tight text-black">
                         <i class="fa-solid fa-code"></i> DevHelp
@@ -61,26 +61,30 @@ const Navbar = () => {
                                     </Link>
                                     <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Features</a>
                                     <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Pricing</a>
-                                    <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Blog</a>
+                                    <Link to="/listquestions">
+                                    <a href="javascript:void(0)" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Blog</a>
+                                    </Link>
                                 </nav>
                             </div>
+                            {client ? (
+                                <div class='w-96'>
+                                    <div class="relative flex items-center w-full h-12 rounded-lg ">
+                                        <div class="grid place-items-center h-full w-12 text-gray-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                        </div>
 
-                            <div class='w-96'>
-                                <div class="relative flex items-center w-full h-12 rounded-lg ">
-                                    <div class="grid place-items-center h-full w-12 text-gray-300">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                        </svg>
+                                        <input
+                                            class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+                                            type="text"
+                                            id="search"
+                                            placeholder="Search something.." />
                                     </div>
-
-                                    <input
-                                        class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
-                                        type="text"
-                                        id="search"
-                                        placeholder="Search something.." />
                                 </div>
-                            </div>
-
+                            ) : (
+                                <div></div>
+                            )}
                             {client ? (
                                 <a href="javascript:void(0)" onClick={onLogout} class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
                                     Sign out
