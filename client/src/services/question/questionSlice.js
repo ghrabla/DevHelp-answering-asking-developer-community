@@ -49,6 +49,27 @@ export const getonequestion = createAsyncThunk(
   }
 )
 
+// Create new question
+export const createquestion = createAsyncThunk(
+    'questions/create',
+    async (questionData,{ dispatch, getState }) => {
+      try { 
+        // console.log(questionData)
+        // const token = thunkAPI.getState().auth.user.token
+        const res = await questionService.createquestion(questionData)
+        dispatch(getquestions())
+        return res;
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString()
+        // return thunkAPI.rejectWithValue(message)
+      }
+    }
+  )
 
 export const updatequestion = createAsyncThunk(
   'questions/update',
@@ -111,6 +132,19 @@ export const questionSlice = createSlice({
         state.questions = action.payload
       })
       .addCase(getquestions.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(createquestion.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(createquestion.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.qcreatequestions.push(action.payload)
+      })
+      .addCase(createquestion.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
