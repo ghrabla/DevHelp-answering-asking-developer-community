@@ -9,7 +9,7 @@ export class QuestionsService {
   constructor(@InjectModel('Question') private readonly questionModel: Model<questionDTO>) {}
 
   async getAllQuestions(): Promise<questionInterface[]> {  
-    return await this.questionModel.find().populate("answers");   
+    return await this.questionModel.find();   
   }
 
   async getQuestionById(id: string): Promise<questionInterface> {

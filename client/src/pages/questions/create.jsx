@@ -1,12 +1,15 @@
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
-import { useState } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createquestion } from "../../services/question/questionSlice";
+import { toast } from "react-toastify";
 
 
 const CreateQuestion = () => {
-
+    const {client} = useSelector((state)=> state.authclient);
     const modules = {
         toolbar: [
             [{ font: [] }],
@@ -25,9 +28,48 @@ const CreateQuestion = () => {
     const [value, setValue] = useState("");
     console.log(value);
 
+    const [formData, setFormData] = useState({ 
+        title: "",
+      });
+    
+      const { title} =
+        formData;
+    
+      const dispatch = useDispatch();
+
+      const onChange = (e) => {
+        setFormData((prevState) => ({
+          ...prevState,
+          [e.target.name]: e.target.value,
+        }))
+      }
+
+      const onSubmit = async (e) => {
+        e.preventDefault();
+        const questionData = {
+          title,
+          body: value,
+          author: client._id,
+        };
+        if(title.trim() != "" && questionData.body.trim() != "" && questionData.author.trim() != ""){
+             dispatch(createquestion(questionData));
+          // const resp = await dispatch(getquestions());
+          // return resp;
+    
+        }else{
+          toast.warning("please enter a valid data")
+        }
+        // setText("");
+      };
+
+      useEffect(()=>{
+       console.log(formData);
+      },[])
+
     return (
         <div>
             <Navbar></Navbar>
+        <form onSubmit={onSubmit}>
             <div>
                 <div class="container mx-auto mt-8">
                     <h1 class="text-3xl font-bold mb-4">Question Creation Page</h1>
@@ -57,15 +99,16 @@ const CreateQuestion = () => {
                 <div class="mt-4">
                     <label for="title" class="block font-medium text-xl text-gray-700 my-3">Title</label>
                     <p class="my-3">Be specific and imagine you’re asking a question to another person.</p>
-                    <input id="title" name="title" type="text" class="border-solid border-2 border-cyane-500 rounded block w-full sm:text-sm sm:leading-5 py-3 px-4 my-3 " placeholder="Enter your question title here"/>
+                    <input id="title" name="title" onChange={onChange} type="text" class="border-solid border-2 border-cyane-500 rounded block w-full sm:text-sm sm:leading-5 py-3 px-4 my-3 " placeholder="Enter your question title here"/>
                 </div>
                 <label for="body" class="block font-medium text-xl text-gray-700 my-3">Body</label>
                 <ReactQuill modules={modules} theme="snow" onChange={setValue} placeholder="Content goes here..." />
-                <a href="javascript:void(0)" class="mt-5 inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-500">
+                <button type="submit" class="mt-5 inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-500">
                     submit question
-                </a>
+                </button>
             </div>
             <Footer></Footer>
+        </form>
         </div>
     )
 }

@@ -1,8 +1,22 @@
+import { useState,useEffect } from "react";
 import Footer from "../../components/footer";
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
+import { getquestions,reset } from "../../services/question/questionSlice";
+import { useDispatch } from "react-redux";
 
 const Listquestions = () => {
+   const [question,setQuestion] = useState([]);
+   const dispatch = useDispatch();
+    
+   useEffect(() => {
+  
+      dispatch(getquestions())
+      dispatch(reset())
+    }, []);
+
+
+
    return (
       <div>
          <Sidebar/>
@@ -13,9 +27,9 @@ const Listquestions = () => {
                   <div class="mb-10 text-center">
                      <span
                         class="block mb-4 text-xs font-semibold leading-4 tracking-widest text-center text-blue-500 uppercase text-black">
-                        Our Question
+                        Our Questions
                      </span>
-                     <h1 class="text-3xl font-bold capitalize "> Question List</h1>
+                     <h1 class="text-3xl font-bold capitalize "> Questions List</h1>
                   </div>
 
                   <div

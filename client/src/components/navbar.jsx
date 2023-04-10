@@ -9,7 +9,6 @@ const Navbar = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { client } = useSelector((state) => state.authclient)
-    console.log(client);
     const showfun = () => {
         setshow(!show);
     };

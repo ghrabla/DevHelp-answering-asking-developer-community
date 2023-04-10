@@ -8,7 +8,7 @@ export class QuestionsController {
     constructor(private readonly questionServices: QuestionsService) { }
 
     @Get()
-    getAllQuestions(): Promise<questionInterface[]> {
+    getAllQuestions(): Promise<questionInterface[]> { 
         return this.questionServices.getAllQuestions();
     }
 
